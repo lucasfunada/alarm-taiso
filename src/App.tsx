@@ -8,7 +8,7 @@ import RadioTaisoDialog from './components/RadioTaisoDialog';
 
 
 function App() {
-  const [time, setTime] = useState(new Date().toLocaleTimeString([], { hour12: false }));
+  const [date, setDate] = useState<Date>(new Date());
   const [alarmInfo, setAlarmInfo] = useState<alarmInfo | null>(null);
   const [isAlarmActive, setIsAlarmActive] = useState<boolean>(false);
   const [showRadioTaiso, setShowRadioTaiso] = useState<boolean>(false);
@@ -24,8 +24,9 @@ function App() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTime(new Date().toLocaleTimeString([], { hour12: false }));
-      const currentTime = new Date().toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit' });
+      const now = new Date();
+      setDate(now);
+      const currentTime = now.toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit' });
       if (alarmInfo && !isAlarmActive && alarmInfo.time === currentTime) {
         setIsAlarmActive(true);
         audioRef.current = new Audio(alarmInfo.sound);
@@ -47,8 +48,16 @@ function App() {
   return (
     <>
       <div className="flex h-screen flex-col items-center justify-center caret-transparent">
-        <h1 className="text-6xl lg:text-9xl font-extrabold font-orbitron">
-          {time}
+        <h1 className="text-2xl lg:text-4xl mb-4">
+          {date.toLocaleDateString('en-US', {
+            weekday: 'long',
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric'
+          }).replace(',', ' -')}
+        </h1>
+        <h1 className="text-6xl lg:text-9xl font-bold">
+          {date.toLocaleTimeString([], { hour12: false })}
         </h1>
         {alarmInfo && (
           <>
