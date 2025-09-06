@@ -7,9 +7,10 @@ type alarmProps = {
   setIsAlarmActive: (active: boolean) => void;
   audioRef: React.RefObject<HTMLAudioElement | null>;
   setAlarmInfo: (info: alarmInfo | null) => void;
+  setShowRadioTaiso: (show: boolean) => void;
 }
 
-export default function AlarmDialog({ isAlarmActive, setIsAlarmActive, audioRef, setAlarmInfo }: alarmProps) {
+export default function AlarmDialog({ isAlarmActive, setIsAlarmActive, audioRef, setAlarmInfo, setShowRadioTaiso }: alarmProps) {
   return (
     <Dialog open={isAlarmActive}>
       <DialogTrigger>
@@ -27,6 +28,7 @@ export default function AlarmDialog({ isAlarmActive, setIsAlarmActive, audioRef,
               audioRef.current.pause();
             }
             setAlarmInfo(null);
+            setShowRadioTaiso(true);
           }}>Stop Alarm
           </Button>
         </DialogFooter>

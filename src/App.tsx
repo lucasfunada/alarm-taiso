@@ -4,12 +4,14 @@ import { Button } from '@/components/ui/button';
 import type { alarmInfo } from '@/types/types';
 import alarms from '@/constants/alarms.json';
 import AlarmDialog from './components/AlarmDialog';
+import RadioTaisoDialog from './components/RadioTaisoDialog';
 
 
 function App() {
   const [time, setTime] = useState(new Date().toLocaleTimeString([], { hour12: false }));
   const [alarmInfo, setAlarmInfo] = useState<alarmInfo | null>(null);
   const [isAlarmActive, setIsAlarmActive] = useState<boolean>(false);
+  const [showRadioTaiso, setShowRadioTaiso] = useState<boolean>(false);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -65,6 +67,13 @@ function App() {
           setIsAlarmActive={setIsAlarmActive}
           audioRef={audioRef}
           setAlarmInfo={setAlarmInfo}
+          setShowRadioTaiso={setShowRadioTaiso}
+        />
+      )}
+      {showRadioTaiso && (
+        <RadioTaisoDialog
+          open={showRadioTaiso}
+          onClose={() => setShowRadioTaiso(false)}
         />
       )}
     </>
