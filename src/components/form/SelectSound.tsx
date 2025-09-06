@@ -1,6 +1,6 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import alarms from "@/constants/alarms.json";
-import { Button } from "./button";
+import { Button } from "@/components/ui/button";
 import { Pause, Play } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 

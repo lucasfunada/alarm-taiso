@@ -1,13 +1,13 @@
-import SelectNumber from "./ui/SelectNumber"
+import SelectNumber from "@/components/form/SelectNumber"
 import { z } from "zod"
-import { Button } from "./ui/button"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import SelectSound from "./ui/SelectSound"
+import SelectSound from "@/components/form/SelectSound"
 import type { alarmInfo } from "@/types/types"
-import { Drawer, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "./ui/drawer"
-import { Slider } from "./ui/slider"
+import { Button } from "@/components/ui/button"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Drawer, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"
+import { Slider } from "@/components/ui/slider"
 
 type AlarmSetterProps = {
   setAlarmInfo: (info: alarmInfo) => void

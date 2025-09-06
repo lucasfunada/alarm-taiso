@@ -3,8 +3,8 @@ import AlarmSetter from '@/components/AlarmSetter';
 import { Button } from '@/components/ui/button';
 import type { alarmInfo } from '@/types/types';
 import alarms from '@/constants/alarms.json';
-import AlarmDialog from './components/AlarmDialog';
-import RadioTaisoDialog from './components/RadioTaisoDialog';
+import AlarmDialog from '@/components/AlarmDialog';
+import RadioTaisoDialog from '@/components/RadioTaisoDialog';
 
 
 function App() {
