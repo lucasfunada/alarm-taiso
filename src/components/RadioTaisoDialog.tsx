@@ -9,7 +9,7 @@ type RadioTaisoDialogProps = {
 export default function RadioTaisoDialog({ open, onClose }: RadioTaisoDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="w-full sm:max-w-[75vw]" onInteractOutside={e => e.preventDefault()}>
+      <DialogContent className="w-full sm:max-w-[75vw]">
         <h2 className="text-2xl mb-4">Radio Taiso Time!</h2>
         <iframe
           className="w-full aspect-video"
