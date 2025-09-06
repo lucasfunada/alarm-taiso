@@ -106,7 +106,7 @@ export default function AlarmSetter({ setAlarmInfo }: AlarmSetterProps) {
                         onValueChange={val => field.onChange(val[0])}
                         max={1}
                         step={0.01}
-                        className="w-full caret-transparent"
+                        className="w-full"
                       />
                     </FormControl>
                     <FormMessage />
