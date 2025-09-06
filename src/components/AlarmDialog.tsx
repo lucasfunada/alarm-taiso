@@ -29,7 +29,7 @@ export default function AlarmDialog({ isAlarmActive, setIsAlarmActive, audioRef,
             }
             setAlarmInfo(null);
             setShowRadioTaiso(true);
-          }}>Stop Alarm
+          }}>Start Radio Taiso
           </Button>
         </DialogFooter>
       </DialogContent>
