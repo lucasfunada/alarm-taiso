@@ -1,33 +1,72 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useRef, useState } from 'react';
+import AlarmSetter from '@/components/AlarmSetter';
+import { Button } from '@/components/ui/button';
+import type { alarmInfo } from '@/types/types';
+import alarms from '@/constants/alarms.json';
+import AlarmDialog from './components/AlarmDialog';
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [time, setTime] = useState(new Date().toLocaleTimeString([], { hour12: false }));
+  const [alarmInfo, setAlarmInfo] = useState<alarmInfo | null>(null);
+  const [isAlarmActive, setIsAlarmActive] = useState<boolean>(false);
+
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  // Request notification permission on mount
+  useEffect(() => {
+    if ("Notification" in window) {
+      Notification.requestPermission();
+    }
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(new Date().toLocaleTimeString([], { hour12: false }));
+      const currentTime = new Date().toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit' });
+      if (alarmInfo && !isAlarmActive && alarmInfo.time === currentTime) {
+        setIsAlarmActive(true);
+        audioRef.current = new Audio(alarmInfo.sound);
+        audioRef.current.loop = true;
+        audioRef.current.volume = alarmInfo.volume;
+        audioRef.current.play();
+        // Send Windows notification
+        if ("Notification" in window && Notification.permission === "granted") {
+          new Notification("Alarm!", {
+            body: `Alarm set for ${alarmInfo.time} is ringing!`,
+            icon: "/vite.svg"
+          });
+        }
+      }
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [alarmInfo, isAlarmActive]);
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="flex h-screen flex-col items-center justify-center caret-transparent">
+        <h1 className="text-6xl lg:text-9xl font-extrabold">
+          {time}
+        </h1>
+        {alarmInfo && (
+          <>
+            <h2 className="text-2xl lg:text-4xl mt-8">Alarm set for: {alarmInfo.time}</h2>
+            <h2 className="text-2xl lg:text-4xl mt-2">Sound: {alarms.find(alarm => alarm.path === alarmInfo.sound)?.name || 'Unknown'}</h2>
+            <Button className="mt-8 p-6 text-xl" onClick={() => setAlarmInfo(null)}>Clear Alarm</Button>
+          </>
+        )}
+        {!alarmInfo && (
+          <AlarmSetter setAlarmInfo={setAlarmInfo} />
+        )}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {isAlarmActive && (
+        <AlarmDialog
+          isAlarmActive={isAlarmActive}
+          setIsAlarmActive={setIsAlarmActive}
+          audioRef={audioRef}
+          setAlarmInfo={setAlarmInfo}
+        />
+      )}
     </>
   )
 }
