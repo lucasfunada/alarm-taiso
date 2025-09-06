@@ -47,7 +47,7 @@ function App() {
   return (
     <>
       <div className="flex h-screen flex-col items-center justify-center caret-transparent">
-        <h1 className="text-6xl lg:text-9xl font-extrabold">
+        <h1 className="text-6xl lg:text-9xl font-extrabold font-orbitron">
           {time}
         </h1>
         {alarmInfo && (
