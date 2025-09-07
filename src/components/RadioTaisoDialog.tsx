@@ -21,7 +21,7 @@ export default function RadioTaisoDialog({ open, onClose }: RadioTaisoDialogProp
           allowFullScreen
         ></iframe>
         <DialogFooter>
-          <Button onClick={onClose}>Close</Button>
+          <Button variant="outline" onClick={onClose}>Close</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
