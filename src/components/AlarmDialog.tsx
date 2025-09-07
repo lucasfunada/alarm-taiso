@@ -11,6 +11,14 @@ type alarmProps = {
 }
 
 export default function AlarmDialog({ isAlarmActive, setIsAlarmActive, audioRef, setAlarmInfo, setShowRadioTaiso }: alarmProps) {
+  function stopAlarm() {
+    setIsAlarmActive(false);
+    if (audioRef.current) {
+      audioRef.current.pause();
+    }
+    setAlarmInfo(null);
+  }
+
   return (
     <Dialog open={isAlarmActive}>
       <DialogContent showCloseButton={false} className="mt-32 lg:mt-40">
@@ -19,14 +27,20 @@ export default function AlarmDialog({ isAlarmActive, setIsAlarmActive, audioRef,
           The alarm is ringing!
         </DialogDescription>
         <DialogFooter>
-          <Button onClick={() => {
-            setIsAlarmActive(false);
-            if (audioRef.current) {
-              audioRef.current.pause();
-            }
-            setAlarmInfo(null);
-            setShowRadioTaiso(true);
-          }}>Start Radio Taiso
+          <Button
+            onClick={() => {
+              stopAlarm();
+            }}
+          >
+            Stop alarm
+          </Button>
+          <Button
+            onClick={() => {
+              stopAlarm();
+              setShowRadioTaiso(true);
+            }}
+          >
+            Start Radio Taiso
           </Button>
         </DialogFooter>
       </DialogContent>
