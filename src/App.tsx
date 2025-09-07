@@ -6,7 +6,7 @@ import alarms from '@/constants/alarms.json';
 import AlarmDialog from '@/components/AlarmDialog';
 import RadioTaisoDialog from '@/components/RadioTaisoDialog';
 import Header from './components/Header';
-
+import Footer from './components/Footer';
 
 function App() {
   const [date, setDate] = useState<Date>(new Date());
@@ -49,7 +49,7 @@ function App() {
   return (
     <div className="flex flex-col h-screen justify-center align-center">
       <Header setShowRadioTaiso={setShowRadioTaiso} />
-      <div className="flex h-screen flex-col items-center justify-center">
+      <div className="flex flex-1 flex-col items-center justify-center">
         <h1 className="text-2xl lg:text-4xl mb-4">
           {date.toLocaleDateString('en-US', {
             weekday: 'long',
@@ -72,6 +72,7 @@ function App() {
           <AlarmSetter setAlarmInfo={setAlarmInfo} />
         )}
       </div>
+      <Footer />
       {isAlarmActive && (
         <AlarmDialog
           isAlarmActive={isAlarmActive}
