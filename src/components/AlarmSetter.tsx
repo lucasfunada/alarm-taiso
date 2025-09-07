@@ -26,7 +26,7 @@ export default function AlarmSetter({ setAlarmInfo }: AlarmSetterProps) {
     defaultValues: {
       hour: "7",
       minute: "0",
-      sound: "src/assets/alarms/digital-alarm.mp3",
+      sound: "alarms/digital-alarm.mp3",
       volume: 1,
     }
   });
