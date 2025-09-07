@@ -13,9 +13,6 @@ type alarmProps = {
 export default function AlarmDialog({ isAlarmActive, setIsAlarmActive, audioRef, setAlarmInfo, setShowRadioTaiso }: alarmProps) {
   return (
     <Dialog open={isAlarmActive}>
-      <DialogTrigger>
-        <Button className="mt-8 p-6 text-xl">Stop Alarm</Button>
-      </DialogTrigger>
       <DialogContent showCloseButton={false} className="mt-32 lg:mt-40">
         <DialogTitle>Alarm</DialogTitle>
         <DialogDescription>
