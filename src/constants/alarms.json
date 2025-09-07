@@ -1,46 +1,46 @@
 [
   {
     "name": "10℃",
-    "path": "src/assets/alarms/10℃_2.mp3"
+    "path": "alarms/10℃_2.mp3"
   },
   {
     "name": "Among Us",
-    "path": "src/assets/alarms/among-us.mp3"
+    "path": "alarms/among-us.mp3"
   },
   {
     "name": "Digital",
-    "path": "src/assets/alarms/digital-alarm.mp3"
+    "path": "alarms/digital-alarm.mp3"
   },
   {
     "name": "Electronic",
-    "path": "src/assets/alarms/electronic-alarm-clock.mp3"
+    "path": "alarms/electronic-alarm-clock.mp3"
   },
   {
     "name": "Morning",
-    "path": "src/assets/alarms/Morning_2.mp3"
+    "path": "alarms/Morning_2.mp3"
   },
   {
     "name": "Pastel House",
-    "path": "src/assets/alarms/PastelHouse.mp3"
+    "path": "alarms/PastelHouse.mp3"
   },
   {
     "name": "Pururin",
-    "path": "src/assets/alarms/pururin.mp3"
+    "path": "alarms/pururin.mp3"
   },
   {
     "name": "Ringtone 013",
-    "path": "src/assets/alarms/ringtone-013.mp3"
+    "path": "alarms/ringtone-013.mp3"
   },
   {
     "name": "Ringtone 019",
-    "path": "src/assets/alarms/ringtone-019.mp3"
+    "path": "alarms/ringtone-019.mp3"
   },
   {
     "name": "Ringtone 025",
-    "path": "src/assets/alarms/ringtone-025.mp3"
+    "path": "alarms/ringtone-025.mp3"
   },
   {
     "name": "Stream",
-    "path": "src/assets/alarms/Stream.mp3"
+    "path": "alarms/Stream.mp3"
   }
 ]
