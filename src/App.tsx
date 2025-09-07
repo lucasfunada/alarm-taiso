@@ -38,7 +38,7 @@ function App() {
         if ("Notification" in window && Notification.permission === "granted") {
           new Notification("Alarm!", {
             body: `Alarm set for ${alarmInfo.time} is ringing!`,
-            icon: "/vite.svg"
+            icon: "taisou_businessman.png"
           });
         }
       }
