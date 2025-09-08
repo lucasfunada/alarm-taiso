@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Drawer, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"
 import { Slider } from "@/components/ui/slider"
+import { useEffect } from "react"
 
 type AlarmSetterProps = {
   setAlarmInfo: (info: alarmInfo) => void
@@ -31,12 +32,31 @@ export default function AlarmSetter({ setAlarmInfo }: AlarmSetterProps) {
     }
   });
 
+  useEffect(() => {
+    const localAlarmInfo = localStorage.getItem('alarmInfo');
+    if (localAlarmInfo) {
+      const parsed = JSON.parse(localAlarmInfo);
+      if (parsed.hour && parsed.minute && parsed.sound && parsed.volume) {
+        form.setValue("hour", parsed.hour);
+        form.setValue("minute", parsed.minute);
+        form.setValue("sound", parsed.sound);
+        form.setValue("volume", parsed.volume);
+      }
+    }
+  }, []);
+
   function onSubmit(values: z.infer<typeof formSchema>) {
     setAlarmInfo({
       time: `${values.hour.padStart(2, '0')}:${values.minute.padStart(2, '0')}`,
       sound: values.sound,
       volume: values.volume,
     });
+    localStorage.setItem('alarmInfo', JSON.stringify({
+      hour: values.hour,
+      minute: values.minute,
+      sound: values.sound,
+      volume: values.volume,
+    }));
   }
 
   return (
@@ -86,7 +106,7 @@ export default function AlarmSetter({ setAlarmInfo }: AlarmSetterProps) {
                     <FormItem>
                       <FormLabel>Sound</FormLabel>
                       <FormControl>
-                          <SelectSound defaultValue={field.value} setSound={field.onChange} volume={form.watch("volume")} />
+                        <SelectSound defaultValue={field.value} setSound={field.onChange} volume={form.watch("volume")} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
